@@ -25,5 +25,8 @@ echo($compte3);
 $John->removeCompte($compte2);
 echo("<br /><strong>Suppression du compte 2 de John</strong><br /><br />");
 echo($John);
+echo("<br /><br /><strong>Ajout de 78.45€ sur le compte 4</strong><br /><br />");
+$compte4->crediter(78.45);
+echo($compte4);
 
 ?>
