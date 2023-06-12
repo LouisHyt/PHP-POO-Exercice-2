@@ -4,14 +4,14 @@ class Titulaire {
 
     private string $_nom;
     private string $_prenom;
-    private string $_naissance;
+    private DateTime $_naissance;
     private string $_ville;
     private array $_comptes;
 
     public function __construct($nom, $prenom, $naissance, $ville, $compte){
         $this->_nom = $nom;
         $this->_prenom = $prenom;
-        $this->_naissance = $naissance;
+        $this->_naissance = new DateTime($naissance);
         $this->_ville = $ville;
         $this->_comptes = $compte;
     }
@@ -58,11 +58,26 @@ class Titulaire {
         return $this->_comptes;
     }
 
+    public function getAge(){
+        $now = new DateTime('now');
+        $age = $now->diff($this->_naissance)->format("%y ans");
+        return $age;
+    }
+
 
     public function __toString(){
+
+        $compteDetails = array_map(function($val){
+            return "• " . $val->getLibelle(). " - ". $val->getSolde(). $val->getDevise();
+        }, $this->_comptes);
+        $compteDetails = implode("<br />", $compteDetails);
+
         return "
             ---- Informations du Titulaire $this->_prenom $this->_nom ---- <br />
-            Ville : $this->_ville <br />   
+            Ville : $this->_ville <br />
+            Age : ".$this->getAge()." <br />
+            Comptes : <br />
+            $compteDetails
         ";
     }
 

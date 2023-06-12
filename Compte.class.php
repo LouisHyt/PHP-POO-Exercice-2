@@ -16,6 +16,30 @@ class Compte {
 
     }
 
+    public function crediter($montant){
+        if($montant <= 0){
+            return "Vous ne pouvez pas créditer un montant négatif";
+        }
+        $this->_solde += $montant;
+        return $this->_solde;
+    }
+
+    public function debiter($montant){
+        if($montant <= 0){
+            return "Vous ne pouvez pas débiter un montant négatif";
+        }
+        $this->_solde -= $montant;
+        return $this->_solde;
+    }
+
+    public function transfer($compte, $montant){
+        if($this->getSolde() < $montant){
+            return "Vous n'avez pas assez d'argent sur votre compte...";
+        }
+        $this->debiter($montant);
+        $compte->crediter($montant);
+    }   
+
     //Setters
     function setLibelle($libelle){
         $this->_libelle = $libelle;
@@ -53,7 +77,11 @@ class Compte {
     }
 
     public function __toString(){
-        return "";
+        return "
+            ---- Informations du compte de ".$this->getTitulaire()->getPrenom()." ".$this->getTitulaire()->getNom(). "---- <br />
+            Type de compte: $this->_libelle <br />
+            Solde : $this->_solde $this->_devise<br />
+        ";
     }
 
 

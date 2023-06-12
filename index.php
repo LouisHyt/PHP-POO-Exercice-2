@@ -14,14 +14,16 @@ $Alicia = new Titulaire("Franck", "Alicia", "2001-02-23", "Paris", []);
 $compte3 = new Compte("Compte Épargne", 14650, "€", $Alicia);
 $compte4 = new Compte("Livret A", 950.48, "€", $Alicia);
 
+echo($compte1);
+echo($compte3);
 
+$compte1->transfer($compte3 , 50);
+echo("<br /><strong>TRANSFERT</strong><br /><br />");
 
-$John->removeCompte($compte1);
-
-
-
-
-
-
+echo($compte1);
+echo($compte3);
+$John->removeCompte($compte2);
+echo("<br /><strong>Suppression du compte 2 de John</strong><br /><br />");
+echo($John);
 
 ?>
