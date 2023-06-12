@@ -15,7 +15,10 @@ $compte3 = new Compte("Compte Épargne", 14650, "€", $Alicia);
 $compte4 = new Compte("Livret A", 950.48, "€", $Alicia);
 
 
-var_dump($Alicia->getComptes())
+
+$John->removeCompte($compte1);
+
+
 
 
 

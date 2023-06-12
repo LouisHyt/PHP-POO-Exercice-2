@@ -34,13 +34,12 @@ class Titulaire {
     }
 
     public function removeCompte($compte){
-        $difference = array_diff($this->_comptes, [$compte]);
-        if($this->_comptes !== $difference){
-            $this->_comptes = $difference;
+        if(in_array($compte, $this->_comptes)){
+            $index = array_search($compte, $this->_comptes);
+            unset($this->_comptes[$index]);
         }
-    }
 
-    
+    }
 
     //Getters
     public function getNom(){
